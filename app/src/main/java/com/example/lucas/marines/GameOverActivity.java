@@ -1,0 +1,34 @@
+package com.example.lucas.marines;
+
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+
+/**
+ * Created by Lucas on 15/05/2017.
+ */
+
+public class GameOverActivity extends AppCompatActivity {
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+
+        View decor =getWindow().getDecorView();
+        int uiOpt = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decor.setSystemUiVisibility(uiOpt);
+
+        getSupportActionBar().hide();
+        setContentView(R.layout.activity_menu);
+        final Button botaoIniciar = (Button) findViewById(R.id.botaoIniciar);
+        botaoIniciar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                botaoIniciar.setText("adasdas");
+            }
+        });
+    }
+}
