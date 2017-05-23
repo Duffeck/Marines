@@ -10,7 +10,7 @@ import android.view.View;
  */
 
 public class GameActivity extends AppCompatActivity {
-
+    RenderView renderView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +20,13 @@ public class GameActivity extends AppCompatActivity {
         decor.setSystemUiVisibility(uiOpt);
 
         getSupportActionBar().hide();
-        setContentView(new RenderView(this));
+        renderView = new RenderView(this);
+        setContentView(renderView);
     }
 
+    @Override
+    public void onBackPressed() {
+        renderView.stopMusic();
+        super.onBackPressed();
+    }
 }

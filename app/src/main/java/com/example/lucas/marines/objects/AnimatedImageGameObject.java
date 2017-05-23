@@ -1,4 +1,4 @@
-package com.example.lucas.marines;
+package com.example.lucas.marines.objects;
 
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -6,13 +6,15 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import com.example.lucas.marines.*;
+
 import java.io.InputStream;
 
 /**
  * Created by developer on 27/03/17.
  */
 
-public class AnimatedImageGameObject extends GameObject {
+public class AnimatedImageGameObject extends com.example.lucas.marines.GameObject {
     Bitmap anim[];
     int frames;
     float elapsedTime = 0f;
