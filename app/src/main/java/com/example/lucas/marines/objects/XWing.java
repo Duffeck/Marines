@@ -9,20 +9,19 @@ import android.graphics.Paint;
  * Created by developer on 24/04/17.
  */
 
-public class XWing extends AnimatedImageGameObject {
+public class XWing extends ImageGameObject {
     public boolean existe = true;
     Matrix matrix = new Matrix();
     public float velocity = 300;
     public int direcao = 0;
 
     public XWing(AssetManager manager){
-        loadImages("images/xwing.png", manager, 1, 1);
+        loadImage("images/xwing.png", manager);
         existe = true;
     }
 
     @Override
     public void update(float deltaTime) {
-        System.out.println(x);
         super.update(deltaTime);
     }
 
@@ -35,7 +34,6 @@ public class XWing extends AnimatedImageGameObject {
         float largura = ((float) canvas.getWidth() / 1.5f) / 960;
         float altura = ((float) canvas.getHeight() / 1.5f) / 1528;
         matrix.preScale(largura, altura);
-        System.out.println(w);
         if(existe) {
             x = canvas.getWidth() / 2 - w * largura / 2;
             y = (canvas.getHeight() / 6 * 5) - h * altura / 2;
@@ -56,7 +54,7 @@ public class XWing extends AnimatedImageGameObject {
             }
         }
         matrix.postTranslate(x, y);
-        canvas.drawBitmap(anim[currentFrame], matrix, paint);
+        canvas.drawBitmap(bitmap, matrix, paint);
     }
 
 }

@@ -8,7 +8,12 @@ import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.lucas.marines.objects.GameResources;
+import com.example.lucas.marines.objects.LaserGameObject;
 import com.example.lucas.marines.objects.XWing;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by developer on 24/04/17.
@@ -21,14 +26,20 @@ public class RenderView extends View {
     Paint paint = new Paint();
     public  int r=200,g=200,b=200;
     float startTime;
-
+    Context context;
     com.example.lucas.marines.objects.XWing XWing;
+    LaserGameObject laser;
+    List<LaserGameObject> lasers = new ArrayList<LaserGameObject>(0); //array para controlar os disparaos da nave
+    float teste = 0f;
+
     public RenderView(Context context) {
         super(context);
-        startTime = System.nanoTime();
-        XWing = new XWing(context.getAssets());
-        GameResources.getInstance().addObject(XWing);
-
+        this.context = context;
+        startTime = System.nanoTime(); //pega o tempo inicial
+        //Nave (Jogador)------------------------------------------------------------
+        XWing = new XWing(context.getAssets()); // criar Nave
+        GameResources.getInstance().addObject(XWing); //adicionar Nave ao GameResources
+        //--------------------------------------------------------------------------
         mediaPlayer = new MediaPlayer();
         try{
             AssetFileDescriptor descriptor = context.getAssets().openFd("sounds/backsong.mp3");
@@ -74,7 +85,6 @@ public class RenderView extends View {
                 XWing.mudarDirecao(1);
             }else if(event.getX()> this.getWidth()/2){
                 XWing.mudarDirecao(2);
-                System.out.println("Ué");
             }
         }
         return super.onTouchEvent(event);
@@ -85,6 +95,19 @@ public class RenderView extends View {
         super.onDraw(canvas);
         float deltaTime = (System.nanoTime()-startTime)/1000000.0f;
         startTime = System.nanoTime();
+        System.out.println(deltaTime);
+
+        //System.out.println((System.nanoTime()-teste)/1000000.0f);
+        float aux = System.nanoTime();
+        if (deltaTime > 1000f){
+            System.out.println("aeeeeeeeeeeeeeeeeeeeee");
+            LaserGameObject laser = new LaserGameObject(context.getAssets());
+            laser.x = XWing.x;
+            laser.y = XWing.y;
+            lasers.add(laser);
+            GameResources.getInstance().addObject(laser);
+            teste = aux;
+        }
 
         GameResources.getInstance().updateAndDraw(deltaTime, canvas, paint);
         invalidate();

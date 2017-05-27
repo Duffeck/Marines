@@ -1,4 +1,4 @@
-package com.example.lucas.marines;
+package com.example.lucas.marines.objects;
 
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -7,13 +7,15 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 
+import com.example.lucas.marines.*;
+
 import java.io.InputStream;
 
 /**
  * Created by developer on 03/04/17.
  */
 
-public class ImageGameObject extends GameObject {
+public class ImageGameObject extends com.example.lucas.marines.objects.GameObject {
     Bitmap bitmap;
     Matrix matrix = new Matrix();
 

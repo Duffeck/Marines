@@ -14,7 +14,7 @@ import java.io.InputStream;
  * Created by developer on 27/03/17.
  */
 
-public class AnimatedImageGameObject extends com.example.lucas.marines.GameObject {
+public class AnimatedImageGameObject extends com.example.lucas.marines.objects.GameObject {
     Bitmap anim[];
     int frames;
     float elapsedTime = 0f;

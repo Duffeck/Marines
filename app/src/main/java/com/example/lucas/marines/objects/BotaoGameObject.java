@@ -24,7 +24,7 @@ public class BotaoGameObject extends GameObject {
 
     @Override
     public void draw(Canvas canvas, Paint paint) {
-    System.out.println("Funciona caramba");
+    //System.out.println("Funciona caramba");
         super.draw(canvas, paint);
         paint.setColor(Color.RED);
         Paint paintText = new Paint();
