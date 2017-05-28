@@ -94,13 +94,11 @@ public class RenderView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         float deltaTime = (System.nanoTime()-startTime)/1000000.0f;
-        startTime = System.nanoTime();
-        System.out.println(deltaTime);
 
-        //System.out.println((System.nanoTime()-teste)/1000000.0f);
+
         float aux = System.nanoTime();
-        if (deltaTime > 1000f){
-            System.out.println("aeeeeeeeeeeeeeeeeeeeee");
+        System.out.println(startTime-deltaTime);
+        if (startTime-deltaTime > 1000f){
             LaserGameObject laser = new LaserGameObject(context.getAssets());
             laser.x = XWing.x;
             laser.y = XWing.y;
@@ -108,6 +106,9 @@ public class RenderView extends View {
             GameResources.getInstance().addObject(laser);
             teste = aux;
         }
+
+        startTime = System.nanoTime();
+        //System.out.println(deltaTime);
 
         GameResources.getInstance().updateAndDraw(deltaTime, canvas, paint);
         invalidate();
