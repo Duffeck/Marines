@@ -36,4 +36,8 @@ public class GameResources {
             obj.draw(canvas, paint);
         }
     }
+
+    public void cleanResources(){
+        gameObjectList.clear();
+    }
 }

@@ -10,10 +10,11 @@ import android.graphics.Paint;
  */
 
 public class XWing extends ImageGameObject {
-    public boolean existe = true;
     Matrix matrix = new Matrix();
+    public boolean existe = true;
     public float velocity = 300;
     public int direcao = 0;
+    public float ultimoTiro = 0;
 
     public XWing(AssetManager manager){
         loadImage("images/xwing.png", manager);
@@ -56,5 +57,4 @@ public class XWing extends ImageGameObject {
         matrix.postTranslate(x, y);
         canvas.drawBitmap(bitmap, matrix, paint);
     }
-
 }

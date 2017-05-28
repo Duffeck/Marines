@@ -13,6 +13,9 @@ public class GameObject {
     public int w,h;
     public float angle = 0;
     public String name = "";
+    public boolean saiuTela = false;
+
+    public int layer = 0;
 
     public Rect getBoundingBox(){
         Rect r = new Rect((int)(x-w/2), (int)(y-h/2), (int)(x+w/2), (int)(y+h/2));

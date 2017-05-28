@@ -14,7 +14,6 @@ public class LaserGameObject extends AnimatedImageGameObject {
     Matrix matrix = new Matrix();
     public float angle = 0;
     public float velocity = 1000;
-//    /public float frequenciaTiro = 70f;
 
     public LaserGameObject(AssetManager manager){
         loadImages("images/laser.png", manager, 1, 11);
@@ -24,8 +23,6 @@ public class LaserGameObject extends AnimatedImageGameObject {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        //x += Math.cos(angle) * deltaTime * velocity/1000;
-        //y += Math.sin(angle) * deltaTime * velocity/1000;
     }
 
     @Override
@@ -37,7 +34,7 @@ public class LaserGameObject extends AnimatedImageGameObject {
 
         y -= velocity / 100.0f;
         if(y+altura*h < 0f) {
-            //y = canvas.getHeight() - altura * h;
+            saiuTela = true;
         }
 
         matrix.postTranslate(x, y);

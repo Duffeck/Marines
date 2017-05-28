@@ -1,4 +1,4 @@
-package com.example.lucas.marines;
+package com.example.lucas.marines.views;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

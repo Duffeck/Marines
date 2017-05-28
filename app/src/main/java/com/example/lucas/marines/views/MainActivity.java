@@ -1,20 +1,18 @@
-package com.example.lucas.marines;
+package com.example.lucas.marines.views;
 
-import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-/**
- * Created by Lucas on 15/05/2017.
- */
+import com.example.lucas.marines.R;
 
-public class GameOverActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         View decor =getWindow().getDecorView();
@@ -24,10 +22,13 @@ public class GameOverActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_menu);
         final Button botaoIniciar = (Button) findViewById(R.id.botaoIniciar);
+        final Context context = this;
         botaoIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                botaoIniciar.setText("adasdas");
+                Intent intent = new Intent().setClass(context, GameActivity.class);
+                startActivity(intent);
+
             }
         });
     }
