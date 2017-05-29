@@ -1,5 +1,7 @@
 package com.example.lucas.marines.views;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -25,11 +27,13 @@ public class GameOverActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         setContentView(R.layout.activity_menu);
-        final Button botaoIniciar = (Button) findViewById(R.id.botaoIniciar);
-        botaoIniciar.setOnClickListener(new View.OnClickListener() {
+        final Button botaoVoltar = (Button) findViewById(R.id.botaoVoltar);
+        final Context context = this;
+        botaoVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                botaoIniciar.setText("adasdas");
+                Intent intent = new Intent().setClass(context, MainActivity.class);
+                startActivity(intent);
             }
         });
     }

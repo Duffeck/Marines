@@ -1,6 +1,8 @@
 package com.example.lucas.marines.views;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -43,6 +45,7 @@ public class RenderView extends View {
     ParallaxGameObject parallaxGameObject;
     int limiteInimigos = 5;
     int totalInimigos = 0;
+    int score = 0;
 
     public RenderView(Context context) {
         super(context);
@@ -158,20 +161,39 @@ try {
         Iterator<TieFighter> iInimigos = inimigos.iterator();
         while (iInimigos.hasNext()){
             TieFighter tieFighter = iInimigos.next();
-            for(LaserGameObject laser : lasers){
-                if(tieFighter.getBoundingBox().intersect(laser.getBoundingBox())){
-                    GameResources.getInstance().removeObject(tieFighter);
-                    iInimigos.remove();
-                    totalInimigos--;
-                    GameResources.getInstance().removeObject(laser);
-                    lasers.remove(laser);
-                }
-            }
 
             if(tieFighter.saiuTela){
                 GameResources.getInstance().removeObject(tieFighter);
                 iInimigos.remove();
                 totalInimigos--;
+                score -= 10;
+            }else{
+                for(LaserGameObject laser : lasers){
+                    System.out.println((tieFighter.x>=laser.x));
+                    System.out.println((tieFighter.x+tieFighter.w<=laser.x+laser.w));
+                    System.out.println((tieFighter.y>=laser.y));
+                    System.out.println((tieFighter.y+tieFighter.h<=laser.y+laser.h));
+                    //System.out.println(tieFighter.getBoundingBox().height());
+                    //if(tieFighter.getBoundingBox().intersect(laser.getBoundingBox())){
+                    if((tieFighter.x>=laser.x && tieFighter.x+tieFighter.w<=laser.x+laser.w) || (tieFighter.y>=laser.y && tieFighter.y+tieFighter.h<=laser.y+laser.h)){
+                        System.out.println("TieFighter:" + tieFighter.x + " X " + tieFighter.y);
+                        System.out.println("Laser:" + laser.x + " X " + laser.y);
+                        GameResources.getInstance().removeObject(tieFighter);
+                        iInimigos.remove();
+                        totalInimigos--;
+                        GameResources.getInstance().removeObject(laser);
+                        lasers.remove(laser);
+                        score += 10;
+                    }
+                    break;
+                }
+                //if(tieFighter.getBoundingBox().intersect(XWing.getBoundingBox())){
+                if(false){
+                    if(context!=null) {
+                        Intent intent = new Intent().setClass(context, GameOverActivity.class);
+                        ((Activity) context).startActivity(intent);
+                    }
+                }
             }
         }
 
