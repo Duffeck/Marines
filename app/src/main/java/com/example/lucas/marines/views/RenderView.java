@@ -175,9 +175,9 @@ try {
                     System.out.println((tieFighter.x+tieFighter.w<=laser.x+laser.w));
                     System.out.println((tieFighter.y>=laser.y));
                     System.out.println((tieFighter.y+tieFighter.h<=laser.y+laser.h));
-                    //System.out.println(tieFighter.getBoundingBox().height());
-                    //if(tieFighter.getBoundingBox().intersect(laser.getBoundingBox())){
-                    if((tieFighter.x>=laser.x && tieFighter.x+tieFighter.w<=laser.x+laser.w) || (tieFighter.y>=laser.y && tieFighter.y+tieFighter.h<=laser.y+laser.h)){
+                    System.out.println(tieFighter.getBoundingBox());
+                    if(tieFighter.getBoundingBox().intersect(laser.getBoundingBox())){
+                    //if((tieFighter.x>=laser.x && tieFighter.x+tieFighter.w<=laser.x+laser.w) || (tieFighter.y>=laser.y && tieFighter.y+tieFighter.h<=laser.y+laser.h)){
                         System.out.println("TieFighter:" + tieFighter.x + " X " + tieFighter.y);
                         System.out.println("Laser:" + laser.x + " X " + laser.y);
                         GameResources.getInstance().removeObject(tieFighter);

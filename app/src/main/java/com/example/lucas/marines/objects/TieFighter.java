@@ -15,7 +15,6 @@ public class TieFighter extends ImageGameObject {
     public float velocity = 300;
     public int direcao = 0;
     public float ultimoTiro = 0;
-    public float largura = 0;
 
     public TieFighter(AssetManager manager){
         loadImage("images/tiefighter.png", manager);
@@ -34,9 +33,12 @@ public class TieFighter extends ImageGameObject {
     public void draw(Canvas canvas, Paint paint) {
         matrix.reset();
         largura = ((float) canvas.getWidth() / 2.5f) / 960;
-        float altura = ((float) canvas.getHeight() / 2.5f) / 1528;
+        altura = ((float) canvas.getHeight() / 2.5f) / 1528;
         matrix.preScale(largura, altura);
         y += velocity / 80.0f;
+
+        w = (int)largura;
+        h = (int)altura;
 
         if(y+altura*h > canvas.getHeight()) {
             saiuTela = true;

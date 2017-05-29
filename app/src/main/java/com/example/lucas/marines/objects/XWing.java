@@ -32,8 +32,8 @@ public class XWing extends ImageGameObject {
     @Override
     public void draw(Canvas canvas, Paint paint) {
         matrix.reset();
-        float largura = ((float) canvas.getWidth() / 1.5f) / 960;
-        float altura = ((float) canvas.getHeight() / 1.5f) / 1528;
+        largura = ((float) canvas.getWidth() / 1.5f) / 960;
+        altura = ((float) canvas.getHeight() / 1.5f) / 1528;
         matrix.preScale(largura, altura);
         if(existe) {
             x = canvas.getWidth() / 2 - w * largura / 2;

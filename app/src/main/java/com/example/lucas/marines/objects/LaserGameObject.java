@@ -28,8 +28,8 @@ public class LaserGameObject extends AnimatedImageGameObject {
     @Override
     public void draw(Canvas canvas, Paint paint) {
         matrix.reset();
-        float largura = ((float) canvas.getWidth() / 1.5f) / 960*1.2f;
-        float altura = ((float) canvas.getHeight() / 1.5f) / 1528*1.2f;
+        largura = ((float) canvas.getWidth() / 1.5f) / 960*1.2f;
+        altura = ((float) canvas.getHeight() / 1.5f) / 1528*1.2f;
         matrix.preScale(largura, altura);
 
         y -= velocity / 100.0f;
