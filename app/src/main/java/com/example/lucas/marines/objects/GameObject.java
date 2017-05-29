@@ -20,8 +20,8 @@ public class GameObject {
     public int layer = 0;
 
     public Rect getBoundingBox(){
-        System.out.println((int)(x-largura/2) + ", " + (int)(y-altura/2) + ", " + (int)(x+largura/2) + ", " +  (int)(y+altura/2));
-        Rect r = new Rect((int)(x-largura/2), (int)(y-altura/2), (int)(x+largura/2), (int)(y+altura/2));
+        //System.out.println((int)(x-w/2) + ", " + (int)(y-h/2) + ", " + (int)(x+w/2) + ", " +  (int)(y+h/2));
+        Rect r = new Rect((int)(x-w/2), (int)(y-h/2), (int)(x+w/2), (int)(y+h/2));
         return r;
     }
 

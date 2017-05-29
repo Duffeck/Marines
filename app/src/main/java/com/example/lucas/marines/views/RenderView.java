@@ -11,6 +11,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
+import android.provider.Settings;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -46,6 +47,8 @@ public class RenderView extends View {
     int limiteInimigos = 5;
     int totalInimigos = 0;
     int score = 0;
+    boolean gameOver = false;
+
 
     public RenderView(Context context) {
         super(context);
@@ -171,11 +174,6 @@ try {
                 score -= 10;
             }else{
                 for(LaserGameObject laser : lasers){
-                    System.out.println((tieFighter.x>=laser.x));
-                    System.out.println((tieFighter.x+tieFighter.w<=laser.x+laser.w));
-                    System.out.println((tieFighter.y>=laser.y));
-                    System.out.println((tieFighter.y+tieFighter.h<=laser.y+laser.h));
-                    System.out.println(tieFighter.getBoundingBox());
                     if(tieFighter.getBoundingBox().intersect(laser.getBoundingBox())){
                     //if((tieFighter.x>=laser.x && tieFighter.x+tieFighter.w<=laser.x+laser.w) || (tieFighter.y>=laser.y && tieFighter.y+tieFighter.h<=laser.y+laser.h)){
                         System.out.println("TieFighter:" + tieFighter.x + " X " + tieFighter.y);
@@ -189,11 +187,15 @@ try {
                     }
                     break;
                 }
-                //if(tieFighter.getBoundingBox().intersect(XWing.getBoundingBox())){
-                if(false){
+
+                if(tieFighter.getBoundingBox().intersect(XWing.getBoundingBox())){
+                //if(false){
                     if(context!=null) {
-                        Intent intent = new Intent().setClass(context, GameOverActivity.class);
-                        ((Activity) context).startActivity(intent);
+                        Intent newIntent = new Intent(context, GameOverActivity.class);
+                        newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        System.out.println("ueeeeeeeeeeeeeeeeeeee");
+                        context.startActivity(newIntent);
+                        gameOver = true;
                     }
                 }
             }

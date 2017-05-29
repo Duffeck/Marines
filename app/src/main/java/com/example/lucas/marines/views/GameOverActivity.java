@@ -26,7 +26,7 @@ public class GameOverActivity extends AppCompatActivity {
         decor.setSystemUiVisibility(uiOpt);
 
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.gameover_activity);
         final Button botaoVoltar = (Button) findViewById(R.id.botaoVoltar);
         final Context context = this;
         botaoVoltar.setOnClickListener(new View.OnClickListener() {

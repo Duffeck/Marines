@@ -11,7 +11,7 @@ import java.io.InputStream;
 
 public class ParallaxGameObject extends GameObject {
     Bitmap bitmap,reversedBitmap;
-    float speed = 100;
+    float speed = 1000;
 
     public void loadImage(String filename,
                           AssetManager manager,int width,int height,
@@ -67,9 +67,9 @@ public class ParallaxGameObject extends GameObject {
         super.draw(canvas, paint);
         if(y > -h)
             canvas.drawBitmap(bitmap,x,y,paint);
-        canvas.drawBitmap(reversedBitmap,x+w,y,paint);
-        canvas.drawBitmap(bitmap,x+2*w,y,paint);
+        canvas.drawBitmap(reversedBitmap,x, y+h,paint);
+        canvas.drawBitmap(bitmap,x,y+2*h,paint);
         if(y < -h)
-            canvas.drawBitmap(reversedBitmap,x+3*w,y,paint);
+            canvas.drawBitmap(reversedBitmap,x,y+3*h,paint);
     }
 }
