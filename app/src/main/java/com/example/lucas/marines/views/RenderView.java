@@ -52,10 +52,7 @@ public class RenderView extends View {
         this.context = context;
         startTime = System.nanoTime(); //pega o tempo inicial
         GameResources.getInstance().cleanResources();
-        //Nave (Jogador)------------------------------------------------------------
-        XWing = new XWing(context.getAssets()); // criar Nave
-        GameResources.getInstance().addObject(XWing); //adicionar Nave ao GameResources
-        //--------------------------------------------------------------------------
+
         mediaPlayer = new MediaPlayer();
         try{
             AssetFileDescriptor descriptor = context.getAssets().openFd("sounds/backsong.mp3");
@@ -106,11 +103,16 @@ public class RenderView extends View {
                 loadImage("images/espaco.jpg",
                         getContext().getAssets(),
                         getWidth(),getHeight(),
-                        false,false);
+                        false,true);
         parallaxGameObject.layer = 1;
         GameResources.
                 getInstance().
                 addObject(parallaxGameObject);
+
+        //Nave (Jogador)------------------------------------------------------------
+        XWing = new XWing(context.getAssets()); // criar Nave
+        GameResources.getInstance().addObject(XWing); //adicionar Nave ao GameResources
+        //--------------------------------------------------------------------------
     }
 
 

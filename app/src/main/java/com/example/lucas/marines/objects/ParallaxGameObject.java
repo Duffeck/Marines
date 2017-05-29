@@ -14,7 +14,7 @@ public class ParallaxGameObject extends GameObject {
     float speed = 100;
 
     public void loadImage(String filename,
-                          AssetManager manager,int w,int h,
+                          AssetManager manager,int width,int height,
                           boolean matchW,boolean matchH){
         try{
             InputStream is = manager.open(filename);
@@ -24,9 +24,9 @@ public class ParallaxGameObject extends GameObject {
             is.close();
 
             if(matchH){
-                int newWidth = (int)(w*h/h);
+                int newWidth = (int)(w*height/h);
                 bitmap = Bitmap.createScaledBitmap(bitmap,
-                        newWidth,h,true);
+                        newWidth,height,true);
                 w = bitmap.getWidth();
                 h = bitmap.getHeight();
                 Matrix mirrorMatrix = new Matrix();
@@ -35,9 +35,9 @@ public class ParallaxGameObject extends GameObject {
                         0,0,(int)w,(int)h,
                         mirrorMatrix,true);
             }else{
-                int newHeight = (int)(w*h/w);
+                int newHeight = (int)(w*height/w);
                 bitmap = Bitmap.createScaledBitmap(bitmap,
-                        w,newHeight,true);
+                        width,newHeight,true);
                 w = bitmap.getWidth();
                 h = bitmap.getHeight();
                 Matrix mirrorMatrix = new Matrix();
@@ -56,20 +56,20 @@ public class ParallaxGameObject extends GameObject {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        x -= speed*deltaTime/10000.0f;
-        if(x <= (-2*w)){
-            x = 0;
+        y -= speed*deltaTime/10000.0f;
+        if(y <= (-2*h)){
+            y = 0;
         }
     }
 
     @Override
     public void draw(Canvas canvas, Paint paint) {
         super.draw(canvas, paint);
-        if(x > -w)
+        if(y > -h)
             canvas.drawBitmap(bitmap,x,y,paint);
         canvas.drawBitmap(reversedBitmap,x+w,y,paint);
         canvas.drawBitmap(bitmap,x+2*w,y,paint);
-        if(x < -w)
+        if(y < -h)
             canvas.drawBitmap(reversedBitmap,x+3*w,y,paint);
     }
 }
