@@ -42,6 +42,7 @@ public class RenderView extends View {
     float ultimoTiro = 0f;
     ParallaxGameObject parallaxGameObject;
     int limiteInimigos = 5;
+    int totalInimigos = 0;
 
     public RenderView(Context context) {
         super(context);
@@ -154,15 +155,34 @@ try {
             }
         }
 
-        if(inimigos.size() < limiteInimigos){
+        Iterator<TieFighter> iInimigos = inimigos.iterator();
+        while (iInimigos.hasNext()){
+            TieFighter tieFighter = iInimigos.next();
+            for(LaserGameObject laser : lasers){
+                if(tieFighter.getBoundingBox().intersect(laser.getBoundingBox())){
+                    GameResources.getInstance().removeObject(tieFighter);
+                    iInimigos.remove();
+                    totalInimigos--;
+                    GameResources.getInstance().removeObject(laser);
+                    lasers.remove(laser);
+                }
+            }
+
+            if(tieFighter.saiuTela){
+                GameResources.getInstance().removeObject(tieFighter);
+                iInimigos.remove();
+                totalInimigos--;
+            }
+        }
+
+        if(totalInimigos < limiteInimigos){
             Random random = new Random();
             TieFighter tieFighter = new TieFighter(context.getAssets());
-            //System.out.println(random.nextInt(tieFighter.w));
-            tieFighter.x = (random.nextInt(tieFighter.w));
+            tieFighter.x = (random.nextInt(canvas.getWidth()+(int)(tieFighter.largura*2f)));
             tieFighter.y = 0;
-            System.out.println(tieFighter.x + " X " + tieFighter.y);
             inimigos.add(tieFighter);
             GameResources.getInstance().addObject(tieFighter);
+            totalInimigos ++;
         }
 
         GameResources.getInstance().updateAndDraw(deltaTime, canvas, paint);
